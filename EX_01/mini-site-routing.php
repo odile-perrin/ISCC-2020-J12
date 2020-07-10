@@ -1,56 +1,80 @@
 <!DOCTYPE html>
-
 <html>
-    <meta charset="utf-8">
-<header>
-    <title>Mini site routing</title>
-    <A HREF="http://localhost/ISCC/J09/EX_01/mini-site-routing.php?page=1">ACCUEIL</A> 
-    <A HREF="http://localhost/ISCC/J09/EX_01/mini-site-routing.php?page=2">PAGE 1</A> 
-    <A HREF="http://localhost/ISCC/J09/EX_01/mini-site-routing.php?page=3">PAGE 2</A>
-    <A HREF="http://localhost/ISCC/J09/EX_01/mini-site-routing.php?page=connexion">PAGE CONNEXION</A>
-    <A HREF="http://localhost/ISCC/J09/EX_01/mini-site-routing.php?page=admin">ADMIN</A>
 
-</header>
+<head>
+    <meta charset="UTF-8">
+    <title>Mini site routing</title>
+</head>
 
 <body>
 
-<?php
-session_start();
-    if($_GET['page'] ==1){
-   echo '<h1>Accueil !</h1>';
+        <a href="http://localhost/ISCC/J12/EX_01/mini-site-routing.php?page=1">Accueil</a>
+        <a href="http://localhost/ISCC/J12/EX_01/mini-site-routing.php?page=2">Page 1</a>
+        <a href="http://localhost/ISCC/J12/EX_01/mini-site-routing.php?page=3">Page 2</a>
+        <a href="http://localhost/ISCC/J12/EX_01/mini-site-routing.php?page=connexion">Connexion</a>
 
-}
-    elseif($_GET['page'] ==2){
-    echo '<h1>Page 2 !</h1>';
-}
-    elseif ($_GET['page'] ==3){
-    echo '<h1>Page 3 !</h1>';
-}
-    elseif ($_GET['page'] =='connexion'){
-    echo '<h1>Connexion</h1>';
-    include("connexion.php");
-}
-    elseif ($_GET['page'] =='admin'){
-    echo '<h1>Admin</h1>';
-    include("admin.php");
-}
-?>
+
+    <?php
+    if($_COOKIE['id'])
+    {
+        echo '<a href="http://localhost/ISCC/J12/EX_01/mini-site-routing.php?page=admin">Admin</a>';
+    }
+    ?>
 
 <?php
-    if(array_key_exists('id', $_SESSION)){
-    echo 'Login: '.$_SESSION['id'];
+    if($_GET)
+    {
+    if($_GET["page"]== "1")
+    {
+        echo "<h1>Accueil !</h1>";
     }
+    if($_GET["page"]== "2")
+    {
+        echo "<h1>Page 2 !</h1>";
+    }
+    if($_GET["page"]== "3")
+    {
+        echo "<h1>Page 3 !</h1>";
+    }
+    if($_GET["page"]== "connexion")
+    {
+        echo "<h1>Connexion</h1>";
+    }
+    }
+    ?>
 
-    if(!array_key_exists('id', $_SESSION)){
-        if($_COOKIE['id']){
-            $_SESSION['id']=$_COOKIE['id'];
-        }
-        else{
-        echo '<p><A HREF="http://localhost/ISCC/J09/EX_01/mini-site-routing.php?page=connexion"></p>';
-        }
-    }
-?>
+    <form enctype="multipart/form-data" action="admin.php" method="post">
+        <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
+        <input name="userfile" type="file" accept="image/x-png,image/jpg,image/jpeg" />
+        <input name="descriptione" type="text" placeholder="Description" />
+        <input name="titre" type="text" placeholder="Titre" />
+        <input type="submit" value="Envoyer le fichier" />
+    </form>
+
+    <?php
+        echo $_FILES;
+    ?>
+
 </body>
 <footer>
+<?php
+
+session_start();
+
+
+if(isset($_SESSION["id"]))
+{
+    echo '<p>Login : ' .$_SESSION["id"]. '</p>';
+    echo '<p> Description : ' .$_SESSION["description"]. '</p>';
+}
+else
+{
+    header('http://localhost/ISCC/J12/EX_01/mini-site-routing.php?page=connexion');
+}
+?>
+
+<img src="image/logo.jpg" alt="logo">
 </footer>
+
+
 </html>
