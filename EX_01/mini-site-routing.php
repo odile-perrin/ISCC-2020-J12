@@ -11,7 +11,7 @@
         <a href="http://localhost/ISCC/J12/EX_01/mini-site-routing.php?page=1">Accueil</a>
         <a href="http://localhost/ISCC/J12/EX_01/mini-site-routing.php?page=2">Page 1</a>
         <a href="http://localhost/ISCC/J12/EX_01/mini-site-routing.php?page=3">Page 2</a>
-        <a href="http://localhost/ISCC/J12/EX_01/mini-site-routing.php?page=connexion">Connexion</a>
+        <a href="http://localhost/ISCC/J12/EX_01/mini-site-routing.php?page=connexion">Page Connexion</a>
 
 
     <?php
@@ -39,14 +39,15 @@
     if($_GET["page"]== "connexion")
     {
         echo "<h1>Connexion</h1>";
+        include 'connexion.php';
     }
     }
     ?>
 
     <form enctype="multipart/form-data" action="admin.php" method="post">
         <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
-        <input name="userfile" type="file" accept="image/x-png,image/jpg,image/jpeg" />
-        <input name="descriptione" type="text" placeholder="Description" />
+        <input name="userfile" type="file" accept="image/x-png,image/jpg,image/jpeg" /><br><br>
+        <input name="description" type="text" placeholder="Description"/><br><br>
         <input name="titre" type="text" placeholder="Titre" />
         <input type="submit" value="Envoyer le fichier" />
     </form>
@@ -73,7 +74,6 @@ else
 }
 ?>
 
-<img src="image/logo.jpg" alt="logo">
 </footer>
 
 

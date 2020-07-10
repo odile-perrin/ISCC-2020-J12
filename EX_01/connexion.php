@@ -1,4 +1,4 @@
-<?php $page = 'page connexion'?>
+<?php $page = 'connexion'?>
 
 <!doctype html>
 <html>
@@ -18,7 +18,7 @@
         <input type="text" name="password" id="password">  
     </div>
 
-    <input type="submit" value="Envoyer">
+    <input type="submit" value="Envoyer"><br>
     </form>
 </body>
 </html>
